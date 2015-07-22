@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>SMS Project</title>
+        <script type="text/javascript" src="js/libs/jquery.js"></script>
+        <script type="text/javascript" src="js/libs/d3.js"></script>
+        <script type="text/javascript" src="js/Message.class.js"></script>
+        <script type="text/javascript" src="js/Contact.class.js"></script>
+        <script type="text/javascript" src="js/Collection.class.js"></script>
+        <script type="text/javascript" src="js/MessageCollection.class.js"></script>
+        <script type="text/javascript" src="js/ContactCollection.class.js"></script>
+        <link rel="stylesheet" type="text/css" href="ui/css/style.css" />
+    </head>
+    <body>
+        <input type="file" id="files" />
+        <div id="loading">
+            <img src="ui/img/loading.gif" alt="loading"/> Loading, please wait...
+        </div>
+        <p id="pinner"></p>
+        <div id="innerresult"></div>
+        <div id="innergraph"></div>
+        <div id="innertxt"></div>
+        <div id="wrapperhour">
+            <div id="innerhour"></div>
+            <div id="closeButton" title="Fermer la fenêtre des messages"></div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#closeButton").on("click", function(e) {
+                    $(this).parent().hide();
+                });
+                var res = $("#innerresult");
+
+                var reader = $(new FileReader());
+
+                reader.on("load", function (e) {
+                    var xml = $($.parseXML(e.target.result));
+                    xml.find("sms").each(function () {
+                        var name = $(this).attr("contact_name");
+                        var text = $(this).attr("body");
+                        var type = $(this).attr("type");
+                        var dateMs = $(this).attr("date");
+                        var dateStr = $(this).attr("readable_date");
+                        
+                        var newMess = new Message(text, type, dateMs, dateStr);
+                        collContacts.addMessage(name, newMess);
+                        collMessages.addMessage(newMess);
+                    });
+
+                    $("#loading").hide();
+//                    collMessages.toHTML(res);
+                    collContacts.drawCircle(collMessages);
+                });
+
+                $("#files").on("change", function (e) {
+                    $("#loading").show();
+                    reader.get(0).readAsText(this.files[0]);
+                });
+            });
+        </script>
+    </body>
+</html>
