@@ -61,14 +61,9 @@ function MessageCollection() {
      * @returns {Array} Le tableau des heures des messages
      */
     this.parseHours = function () {
-        // instanciation du tableau
-        var array = [];
-        // ajout de l'heure de chaque message dans le tableau
-        for (var i = 0; i < this.size; i++) {
-            array.push(this.getObj(i).getHour());
-        }
-
-        return array;
+        return that.objects.map(function(e) {
+            return e.getHour();
+        });
     };
 
     /**
