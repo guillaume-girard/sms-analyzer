@@ -43,13 +43,10 @@ function ContactCollection() {
      * @returns {Object} Un objet contenant le tableau des données
      */
     this.parseNbTotal = function () {
-        var array = [];
-
-        for (var index in this.objects) {
-            array.push({"contactName": this.objects[index].getName(), "value": this.objects[index].getNbTotal()});
-        }
-
-        return {children: array};
+        var testArray = this.objects.map(function(o) {
+            return {"contactName": o.getName(), "value": o.getNbTotal()};
+        });
+        return {children: testArray};
     };
 
     /**

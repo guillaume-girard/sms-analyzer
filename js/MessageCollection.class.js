@@ -61,7 +61,7 @@ function MessageCollection() {
      * @returns {Array} Le tableau des heures des messages
      */
     this.parseHours = function () {
-        return that.objects.map(function(e) {
+        return this.objects.map(function(e) {
             return e.getHour();
         });
     };
