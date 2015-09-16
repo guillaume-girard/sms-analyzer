@@ -154,6 +154,7 @@ function ContactCollection() {
                 });
         // append du onclick pour afficher les infos d'un contact
         node.on("click", function (d) {
+             d3.select("#innertitle").html("<h1>SMS de "+ d.contactName +"</h1>");
             var cont = collContacts.getContact(d.contactName);
             cont.drawLine();
             cont.drawBar();
@@ -204,6 +205,7 @@ function ContactCollection() {
                 });
         // append du onclick pour afficher les infos d'un contact
         allMessages.on("click", function () {
+            d3.select("#innertitle").html("<h1>Tous les SMS</h1>");
             collMessages.drawLine();
             collMessages.drawBar();
             var divtxt = d3.select("#innertxt").html("");

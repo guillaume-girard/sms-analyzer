@@ -1,9 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: sans-serif;
 }
+
+body div {
+    margin: 1%;
+    padding: 10px;
+}
+
 body > div {
     float: left;
-    max-width: 50%;
+    max-width: 46%;
     overflow: auto;
 }
 svg.bubble {
@@ -75,6 +85,10 @@ div.message .date {
     font-size: 10px;
 }
 
+.graph {
+    box-shadow: 0px 5px 10px #EFEFEF;
+}
+
 #wrapperhour {
     position: fixed;
     left: 30px;
@@ -115,4 +129,17 @@ div.message .date {
     border-color: rgba(255, 100, 100, 1);
     background-color: rgba(255, 150, 150, 1);
     color: rgba(255, 100, 100, 1);
+}
+
+#innertitle {
+    text-align: center;
+    background-color: #EFEFEF;
+    font-family: Verdana, Geneva, sans-serif;
+    color: #A0A0A0;
+}
+#innertitle h1 {
+    padding: 12px 0px;
+    margin: auto;
+    font-weight: normal;
+    letter-spacing: -1px;
 }
